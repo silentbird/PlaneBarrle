@@ -1,0 +1,5 @@
+2019/10/24-01:10:12.033 60fc Log #3: 1 ops saved to Table #4 OK
+2019/10/24-01:10:12.035 60fc Archiving D:\W\LayaProj\PlaneBattle\.laya\chrome\Default\Site Characteristics Database/000003.log: OK
+2019/10/24-01:10:12.035 60fc Table #4: 1 entries OK
+2019/10/24-01:10:12.037 60fc Archiving D:\W\LayaProj\PlaneBattle\.laya\chrome\Default\Site Characteristics Database/MANIFEST-000001: OK
+2019/10/24-01:10:12.119 60fc **** Repaired leveldb D:\W\LayaProj\PlaneBattle\.laya\chrome\Default\Site Characteristics Database; recovered 1 files; 130 bytes. Some data may have been lost. ****
