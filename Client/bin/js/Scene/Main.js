@@ -29,6 +29,22 @@ var Main = /** @class */ (function (_super) {
             "res/atlas/prop.atlas",
             "background/bg_start.jpg",
         ], Laya.Handler.create(this, this.init));
+        this.socket = io("http://localhost:3000");
+        this.socket.on('connect', function (data) {
+            console.log("[LAYA]连接成功");
+        });
+    };
+    Main.prototype.errorHandler = function (ERROR, arg1, errorHandler) {
+        console.log("[LAYA]连接失败");
+    };
+    Main.prototype.closeHandler = function (CLOSE, arg1, closeHandler) {
+        console.log("[LAYA]关闭连接");
+    };
+    Main.prototype.receiveHandler = function (MESSAGE, arg1, receiveHandler) {
+        console.log("[LAYA]收到消息");
+    };
+    Main.prototype.openHandler = function (OPEN, arg1, openHandler) {
+        console.log("[LAYA]连接成功");
     };
     Main.prototype.init = function () {
         this.startScene = new StartScene();

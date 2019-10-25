@@ -1,0 +1,22 @@
+{
+    // 有关 tasks.json 格式的文档，请参见
+    // https://go.microsoft.com/fwlink/?LinkId=733558
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile-server-laya",
+            "type": "shell",
+            "command": "cd D:/W/Laya Proj/PlaneBattle/Server & npm run build & start server.exe & cd ../Client & layaair-cmd compile"
+        },
+        {
+            "label": "compile-server",
+            "type": "shell",
+            "command": "cd Server & npm run build & start server.exe "
+        },
+        {
+            "label": "compile-laya",
+            "type": "shell",
+            "command": "cd D:/W/Laya Proj/PlaneBattle/Client & layaair-cmd compile"
+        }
+    ]
+}
