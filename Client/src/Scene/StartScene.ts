@@ -19,20 +19,11 @@ class StartScene extends ui.StartSceneUI {
 
     private init(): void {
         //this.beginButton.on(Laya.Event.CLICK,this,this.onBegin);
-        GlobleFun.UiClickScale(this.signButton, () => {
-            this.event("onSing", this);
-        });
         GlobleFun.UiClickScale(this.beginButton, () => {
             this.event("onBegin", this);
         });
         GlobleFun.UiClickScale(this.rankingButton, () => {
             this.event("onRank", this);
-        });
-        GlobleFun.UiClickScale(this.shareButton, () => {
-            this.event("onShare", this);
-        });
-        GlobleFun.UiClickScale(this.helpButton, () => {
-            this.event("onHelp", this);
         });
         //  this.beginButton.on(Laya.Event.MOUSE_DOWN,this,this.onBegin);
         // this.rankingButton.on(Laya.Event.MOUSE_DOWN,this,this.onRank);
@@ -53,22 +44,5 @@ class StartScene extends ui.StartSceneUI {
             this.event("onRank", this);
         });
         //  this.event("onRank",this);
-    }
-    private onShare(): void {
-        GlobleFun.UiClickScale(this.shareButton, () => {
-            this.event("onShare", this);
-        });
-        //this.event("onShare",this);
-    }
-    private onHelp(): void {
-        GlobleFun.UiClickScale(this.helpButton, () => {
-            this.event("onHelp", this);
-        });
-        // this.event("onHelp",this);
-    }
-    private onSing(): void {
-        GlobleFun.UiClickScale(this.signButton, () => {
-            this.event("onSing", this);
-        });
     }
 }

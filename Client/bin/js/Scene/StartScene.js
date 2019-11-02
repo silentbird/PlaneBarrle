@@ -34,20 +34,11 @@ var StartScene = /** @class */ (function (_super) {
     StartScene.prototype.init = function () {
         var _this = this;
         //this.beginButton.on(Laya.Event.CLICK,this,this.onBegin);
-        GlobleFun.UiClickScale(this.signButton, function () {
-            _this.event("onSing", _this);
-        });
         GlobleFun.UiClickScale(this.beginButton, function () {
             _this.event("onBegin", _this);
         });
         GlobleFun.UiClickScale(this.rankingButton, function () {
             _this.event("onRank", _this);
-        });
-        GlobleFun.UiClickScale(this.shareButton, function () {
-            _this.event("onShare", _this);
-        });
-        GlobleFun.UiClickScale(this.helpButton, function () {
-            _this.event("onHelp", _this);
         });
         //  this.beginButton.on(Laya.Event.MOUSE_DOWN,this,this.onBegin);
         // this.rankingButton.on(Laya.Event.MOUSE_DOWN,this,this.onRank);
@@ -69,26 +60,6 @@ var StartScene = /** @class */ (function (_super) {
             _this.event("onRank", _this);
         });
         //  this.event("onRank",this);
-    };
-    StartScene.prototype.onShare = function () {
-        var _this = this;
-        GlobleFun.UiClickScale(this.shareButton, function () {
-            _this.event("onShare", _this);
-        });
-        //this.event("onShare",this);
-    };
-    StartScene.prototype.onHelp = function () {
-        var _this = this;
-        GlobleFun.UiClickScale(this.helpButton, function () {
-            _this.event("onHelp", _this);
-        });
-        // this.event("onHelp",this);
-    };
-    StartScene.prototype.onSing = function () {
-        var _this = this;
-        GlobleFun.UiClickScale(this.signButton, function () {
-            _this.event("onSing", _this);
-        });
     };
     return StartScene;
 }(ui.StartSceneUI));

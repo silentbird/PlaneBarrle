@@ -32,7 +32,7 @@ var Main = /** @class */ (function (_super) {
     };
     Main.prototype.init = function () {
         //socket
-        GlobleFun.socket = io("http://localhost:3000");
+        GlobleFun.socket = io();
         GlobleFun.socket.on('connect', function (data) {
             console.log("[LAYA]连接成功");
         });
@@ -50,9 +50,9 @@ var Main = /** @class */ (function (_super) {
         this.startScene.maxScoreText.text = bestScore;
         this.startScene.on("onBegin", this, this.loadGameScene); //开始 加载游戏界面
         this.startScene.on("onRank", this, this.loadRankScene); //排行榜 加排行榜界面
-        this.startScene.on("onShare", this, this.loadShareScene); //分享 加载分享界面
-        this.startScene.on("onHelp", this, this.loadHelpScene); //加载帮助界面
-        this.startScene.on("onSing", this, this.loadSignScene); //加载签到界面
+        // this.startScene.on("onShare", this, this.loadShareScene); //分享 加载分享界面
+        // this.startScene.on("onHelp", this, this.loadHelpScene); //加载帮助界面
+        // this.startScene.on("onSing", this, this.loadSignScene); //加载签到界面
     };
     Main.prototype.loadGameScene = function () {
         GlobleFun.addCheckpointScore(); //增加 关卡的分数
@@ -80,18 +80,6 @@ var Main = /** @class */ (function (_super) {
         r.zOrder = 1000;
         Laya.stage.addChild(r);
         console.log("loadRankScene");
-    };
-    Main.prototype.loadShareScene = function () {
-        console.log("loadShareScene");
-    };
-    Main.prototype.loadHelpScene = function () {
-        console.log("帮助界面");
-        this.helpScene = new HelpScene();
-        Laya.stage.addChild(this.helpScene);
-        this.helpScene.zOrder = 10000;
-    };
-    Main.prototype.loadSignScene = function () {
-        console.log("加载签到 界面");
     };
     return Main;
 }(Laya.Sprite));

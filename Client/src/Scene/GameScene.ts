@@ -55,88 +55,9 @@ class GameScene extends ui.sceneUI {
         // this.addChild(this.over);
         this.over.visible = false;
 
-        this.invincible.name = "功能按钮";
-        this.invincible.size(79, 87);
-        this.invincible.on(Laya.Event.CLICK, this, (e: Laya.Event) => { //无敌保护按钮
-            e.stopPropagation();
-            //console.log(e.target.name);
-            if (GlobleFun.invincibleNum == 0) { return }
-            if (GlobleFun.specialBall) { return } //场景中有特殊球的时候 不能使用
-            this.invincible.mouseEnabled = false;
-            GlobleFun.player.InvincibleState = 1;
-            GlobleFun.time(10, 3);
-            GlobleFun.invincibleNum -= 1;//使用次数 -1
-            console.log("无敌保护按钮");
-            this.invincibleText.visible = false;
-            this.updataTimeText("invincible");
-            Laya.timer.once(60000, this, () => {
-                console.log("-----无敌保护可以使用啦-----");
-                this.invincibleText.visible = true;
-                this.invincible.mouseEnabled = true;
-                this.invincibleTime.text = "60s";
-                this.invincibleTime.visible = false;
-            });
-        });
-        this.explosion.name = "功能按钮";
-        this.explosion.size(68, 94);
-        this.explosion.on(Laya.Event.CLICK, this, (e: Laya.Event) => { //清屏按钮
-            e.stopPropagation();
-            if (GlobleFun.explosionNum == 0) { return }
-            if (GlobleFun.specialBall) { return } //场景中有特殊球的时候 不能使用
-            this.explosion.mouseEnabled = false;
-            GlobleFun.map.explosionEffect();
-            GlobleFun.explosionNum -= 1; //使用次数 -1
-            console.log("清屏清屏清屏清屏清屏清屏清屏清屏清屏清屏清屏清屏清屏清屏清屏清屏");
-            this.explosionText.visible = false;
-            this.updataTimeText("explosion");
-            Laya.timer.once(60000, this, () => {
-                console.log("-----清屏爆炸可以使用啦-----");
-                this.explosion.mouseEnabled = true;
-                this.explosionTime.text = "60s";
-                this.explosionText.visible = true;
-                this.explosionTime.visible = false;
-            });
-        });
 
         this.updataProgress();
         //  this.flashingEffect();
-    }
-    private updataTimeText(button: string): void //更新 清屏爆炸 和无敌保护的CD文本
-    {
-
-        var tt = 60;
-        if (button == "explosion") {
-            this.explosionTime.visible = true;
-            Laya.timer.loop(1000, this, () => {
-                if (GlobleFun.isOver) {
-                    this.explosionTime.visible = false;
-                    this.explosion.mouseEnabled = true;
-                    return
-                }
-                if (this.explosion.mouseEnabled == true) {
-                    tt = 60;
-                    return
-                }
-                tt -= 1;
-                this.explosionTime.text = tt.toString() + "s";
-            });
-        } else if (button == "invincible") {
-            this.invincibleTime.visible = true;
-            Laya.timer.loop(1000, this, () => {
-                if (GlobleFun.isOver) {
-                    this.invincibleTime.visible = false;
-                    this.invincible.mouseEnabled = true;
-                    return
-                }
-                if (this.invincible.mouseEnabled == true) {
-                    tt = 60;
-                    return
-                }
-                tt -= 1;
-                this.invincibleTime.text = tt.toString() + "s";
-            });
-        }
-
     }
     /**
      * 实时更新
@@ -153,16 +74,12 @@ class GameScene extends ui.sceneUI {
         if (!GlobleFun.specialBall) {  //没有特殊 球 时
             this.effectPicture_1.visible = false;
             this.effectPicture_2.visible = false;
-            this.invincible.visible = true;
-            this.explosion.visible = true;
         }
         var bestScore = Laya.LocalStorage.getItem("bestScore");
         this.currentScore.text = this.conversionScore(GlobleFun.Score); //更新当前分数
         // this.MaxSocre.text = bestScore; //更新最高分
         this.bulletPower.text = (GlobleFun.bulletPower * 100).toFixed(0) + "%";//更新玩家的子弹威力文本
         this.bulletSpeed.text = (GlobleFun.bulletInterval).toString();//更新玩家的子弹速度 文本
-        this.explosionNumText.text = "x" + GlobleFun.explosionNum.toString();
-        this.invincibleNumText.text = "x" + GlobleFun.invincibleNum.toString();
 
         this.updataCheckpoint();
         // this.updataProgress();
@@ -175,14 +92,6 @@ class GameScene extends ui.sceneUI {
      */
     private onOver(): void {
         Laya.timer.clear(this, this.flashingEffect);
-        this.explosion.mouseEnabled = true;
-        this.explosionTime.text = "60s";
-        this.explosionText.visible = true;
-        this.explosionTime.visible = false;
-        this.invincibleText.visible = true;
-        this.invincible.mouseEnabled = true;
-        this.invincibleTime.text = "60s";
-        this.invincibleTime.visible = false;
 
         this.propTimeIcon.visible = false;
 
@@ -256,9 +165,6 @@ class GameScene extends ui.sceneUI {
             this.effectPicture_2.zOrder = 1500;
 
             this.isSpecialBall = true;
-
-            this.invincible.visible = false; //出现 特殊球 时 隐藏 功能按钮
-            this.explosion.visible = false;
 
             Laya.timer.once(2000, this, () => {  //设置 出现特效边框后 几秒出 特殊球
                 Laya.timer.clear(this, this.flashingEffect);
