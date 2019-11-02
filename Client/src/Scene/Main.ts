@@ -21,27 +21,16 @@ class Main extends Laya.Sprite {
             "res/atlas/prop.atlas",
             "background/bg_start.jpg",
         ], Laya.Handler.create(this, this.init));
-
-        this.socket = io("http://localhost:3000")
-        this.socket.on('connect', (data) => {
-            console.log("[LAYA]连接成功");
-        });
-    }
-    errorHandler(ERROR: string, arg1: this, errorHandler: any) {
-        console.log("[LAYA]连接失败");
-    }
-    closeHandler(CLOSE: string, arg1: this, closeHandler: any) {
-        console.log("[LAYA]关闭连接");
-    }
-    receiveHandler(MESSAGE: string, arg1: this, receiveHandler: any) {
-        console.log("[LAYA]收到消息");
-    }
-    openHandler(OPEN: string, arg1: this, openHandler: any) {
-        console.log("[LAYA]连接成功");
     }
 
     private init(): void {
-
+        //socket
+        GlobleFun.socket = io("http://localhost:3000")
+        GlobleFun.socket.on('connect', (data) => {
+            console.log("[LAYA]连接成功");
+        });
+        GlobleFun.socket.emit("end_game", { name: "ly", score: 100 });
+        //界面
         this.startScene = new StartScene();
         Laya.stage.addChild(this.startScene);
         this.startScene.layoutEnabled = true;
@@ -58,7 +47,6 @@ class Main extends Laya.Sprite {
         this.startScene.on("onShare", this, this.loadShareScene); //分享 加载分享界面
         this.startScene.on("onHelp", this, this.loadHelpScene); //加载帮助界面
         this.startScene.on("onSing", this, this.loadSignScene); //加载签到界面
-
     }
 
     private loadGameScene(): void {
@@ -107,6 +95,4 @@ class Main extends Laya.Sprite {
     private loadSignScene(): void {
         console.log("加载签到 界面");
     }
-
-
 }
