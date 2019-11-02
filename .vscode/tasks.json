@@ -6,17 +6,17 @@
         {
             "label": "compile-server-laya",
             "type": "shell",
-            "command": "cd D:/W/Laya Proj/PlaneBattle/Server & npm run build & start server.exe & cd ../Client & layaair-cmd compile"
+            "command": "cd 'D:/W/Laya Proj/PlaneBattle/Server' ; npm run build ; start server.exe ; cd ../Client ; layaair-cmd compile"
         },
         {
             "label": "compile-server",
             "type": "shell",
-            "command": "cd Server & npm run build & start server.exe "
+            "command": "cd Server ; npm run build ; start server.exe "
         },
         {
             "label": "compile-laya",
             "type": "shell",
-            "command": "cd D:/W/Laya Proj/PlaneBattle/Client & layaair-cmd compile"
+            "command": "cd 'D:/W/Laya Proj/PlaneBattle/Client' ; layaair-cmd compile"
         }
     ]
 }

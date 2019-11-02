@@ -93,17 +93,3 @@ var SocketServer = require("../game/socket-server");
 console.log("[Server]服务器启动中。。。");
 SocketServer(server);
 console.log("[Server]服务器启动成功");
-
-
-var path = require('path');
-//sql init
-var SqliteDB = require('../db/db').SqliteDB;
-var file = path.join(__dirname, "../db/ranking.db");
-var sqliteDB = new SqliteDB(file);
-/// create table.
-var createTileTableSql = "create table if not exists tiles(name TEXT, score INTEGER);";
-sqliteDB.createTable(createTileTableSql);
-/// insert data.
-var tileData = [['sientbird', 11222]];
-var insertTileSql = "insert into tiles(name, score) values(?, ?)";
-sqliteDB.insertData(insertTileSql, tileData);

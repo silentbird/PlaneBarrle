@@ -8,8 +8,8 @@ DB.SqliteDB = function (file) {
 
     DB.exist = fs.existsSync(file);
     if (!DB.exist) {
-        console.log("Creating db file!");
-        var a = fs.openSync(file, 'w');
+        console.log("[DB]正在创建db。。");
+        fs.openSync(file, 'w');
     };
 };
 
@@ -23,6 +23,8 @@ DB.SqliteDB.prototype.createTable = function (sql) {
             if (null != err) {
                 DB.printErrorInfo(err);
                 return;
+            } else {
+                console.log('[DB]创建Table完成');
             }
         });
     });
@@ -35,8 +37,9 @@ DB.SqliteDB.prototype.insertData = function (sql, objects) {
         for (var i = 0; i < objects.length; ++i) {
             stmt.run(objects[i]);
         }
-
-        stmt.finalize();
+        stmt.finalize(function () {
+            console.log('[DB]添加Data完成');
+        });
     });
 };
 

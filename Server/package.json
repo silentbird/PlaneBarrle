@@ -2,10 +2,6 @@
   "name": "server",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "node ./bin/www",
-    "build": "pkg -t win package.json"
-  },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~4.1.1",
@@ -21,11 +17,48 @@
   "bundledDependencies": [
     "express"
   ],
-  "bin": "./bin/www",
-  "pkg": {
-    "assets": [
-      "public/**/*",
-      "views/*"
-    ]
+  "node-main": "./bin/www",
+  "main": "http://localhost:3000",
+  "devDependencies": {
+    "nwjs-builder-phoenix": "^1.15.0"
+  },
+
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "build --win --x64 --mirror https://npm.taobao.org/mirrors/nwjs/ ."
+  },
+  "author": "silentbird",
+  "license": "MIT",
+  "build": {
+    "appId": "io.github.evshiron.nwjs-builder-phoenix.project",
+    "nwVersion": "0.42.0",
+    "packed": true,
+    "targets": [
+      "zip",
+      "nsis7z"
+    ],
+    "strippedProperties": [
+      "build"
+    ],
+    "outputPattern": "${NAME} ${VERSION} ${PLATFORM} ${ARCH}",
+    "win": {
+      "productName": "Server",
+      "companyName": "nwjs-builder-phoenix",
+      "copyright": "copyright"
+    },
+    "mac": {
+      "displayName": "Project",
+      "copyright": "copyright",
+      "icon": "./assets/pd.icns",
+      "plistStrings": {
+        "CFBundleIdentifier": "io.github.evshiron.nwjs-builder-phoenix.project.modified",
+        "CFBundleDocumentTypes": []
+      }
+    },
+    "nsis": {
+      "installDirectory": "$PROGRAMFILES\\${_COMPANYNAME}\\${_APPNAME}",
+      "diffUpdaters": true
+    }
   }
 }
