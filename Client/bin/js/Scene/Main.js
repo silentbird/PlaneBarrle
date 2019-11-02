@@ -32,8 +32,8 @@ var Main = /** @class */ (function (_super) {
     };
     Main.prototype.init = function () {
         //socket
-        GlobleFun.socket = io();
-        GlobleFun.socket.on('connect', function (data) {
+        GlobleFun.socket = io("127.0.0.1:3000");
+        GlobleFun.socket.on('connect', function () {
             console.log("[LAYA]连接成功");
         });
         GlobleFun.socket.emit("end_game", { name: "ly", score: 100 });
