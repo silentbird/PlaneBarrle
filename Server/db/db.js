@@ -14,8 +14,18 @@ DB.SqliteDB = function (file) {
 };
 
 DB.printErrorInfo = function (err) {
-    console.log("Error Message:" + err.message + " ErrorNumber:" + errno);
+    console.log("Error Message:" + err.message);
 };
+
+DB.sortTable = function () {
+    var sql = "SELECT * FROM COMPANY ORDER BY NAME, SALARY ASC";
+    DB.db.run(sql, function (err) {
+        if (null != err) {
+            DB.printErrorInfo(err);
+        }
+    });
+};
+
 
 DB.SqliteDB.prototype.createTable = function (sql) {
     DB.db.serialize(function () {
@@ -30,6 +40,8 @@ DB.SqliteDB.prototype.createTable = function (sql) {
     });
 };
 
+
+
 /// tilesData format; [[level, column, row, content], [level, column, row, content]]
 DB.SqliteDB.prototype.insertData = function (sql, objects) {
     DB.db.serialize(function () {
@@ -39,6 +51,7 @@ DB.SqliteDB.prototype.insertData = function (sql, objects) {
         }
         stmt.finalize(function () {
             console.log('[DB]添加Data完成');
+            DB.sortTable();
         });
     });
 };
@@ -53,6 +66,7 @@ DB.SqliteDB.prototype.queryData = function (sql, callback) {
         /// deal query data.
         if (callback) {
             callback(rows);
+            DB.sortTable();
         }
     });
 };

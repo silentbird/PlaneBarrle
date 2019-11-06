@@ -19,9 +19,15 @@ var Main = /** @class */ (function (_super) {
     function Main() {
         var _this = _super.call(this) || this;
         _this.load();
-        return _this;
         //this.init();
         //Laya.stage.on(Laya.Event.RESIZE,this,this.adapter);
+        //socket
+        GlobleFun.socket = io("http://localhost:3000");
+        GlobleFun.socket.on('connect', function () {
+            console.log("[LAYA]连接成功");
+        });
+        GlobleFun.socket.emit("end_game", { name: "ly", score: 100 });
+        return _this;
     }
     Main.prototype.load = function () {
         Laya.loader.load([
@@ -31,12 +37,6 @@ var Main = /** @class */ (function (_super) {
         ], Laya.Handler.create(this, this.init));
     };
     Main.prototype.init = function () {
-        //socket
-        GlobleFun.socket = io("127.0.0.1:3000");
-        GlobleFun.socket.on('connect', function () {
-            console.log("[LAYA]连接成功");
-        });
-        GlobleFun.socket.emit("end_game", { name: "ly", score: 100 });
         //界面
         this.startScene = new StartScene();
         Laya.stage.addChild(this.startScene);

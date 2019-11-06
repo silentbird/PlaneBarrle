@@ -13,6 +13,12 @@ class Main extends Laya.Sprite {
         this.load();
         //this.init();
         //Laya.stage.on(Laya.Event.RESIZE,this,this.adapter);
+
+        //socket
+        GlobleFun.socket = io("http://localhost:3000");
+        GlobleFun.socket.on('connect', () => {
+            console.log("[LAYA]连接成功");
+        });
     }
 
     private load(): void {
@@ -24,12 +30,6 @@ class Main extends Laya.Sprite {
     }
 
     private init(): void {
-        //socket
-        GlobleFun.socket = io("127.0.0.1:3000");
-        GlobleFun.socket.on('connect', () => {
-            console.log("[LAYA]连接成功");
-        });
-        GlobleFun.socket.emit("end_game", { name: "ly", score: 100 });
         //界面
         this.startScene = new StartScene();
         Laya.stage.addChild(this.startScene);
@@ -50,6 +50,9 @@ class Main extends Laya.Sprite {
     }
 
     private loadGameScene(): void {
+
+        GlobleFun.socket.emit("end_game", { name: "ly", score: 100 });
+        return ;
         GlobleFun.addCheckpointScore(); //增加 关卡的分数
 
         console.log("loadGameScene");
@@ -68,8 +71,6 @@ class Main extends Laya.Sprite {
         this.gameScene.right = 0;
         this.gameScene.top = 0;
         this.gameScene.bottom = 0;
-
-
         this.startScene.visible = false;
     }
 
