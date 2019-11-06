@@ -50,9 +50,10 @@ class Main extends Laya.Sprite {
     }
 
     private loadGameScene(): void {
-
-        GlobleFun.socket.emit("end_game", { name: "ly", score: 100 });
-        return ;
+        if (this.startScene.strName && this.startScene.numScore) {
+            GlobleFun.socket.emit("end_game", { name: this.startScene.strName, score: this.startScene.numScore });
+        }
+        return;
         GlobleFun.addCheckpointScore(); //增加 关卡的分数
 
         console.log("loadGameScene");

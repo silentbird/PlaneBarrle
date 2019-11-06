@@ -117,7 +117,10 @@ module ui {
 	export class StartSceneUI extends View {
 		public bg: Laya.Image;
 		public maxScore: Laya.Label;
-		public maxScoreText: Laya.Label;
+		public maxScoreText: Laya.TextInput;
+		public txtName: Laya.Label;
+		public txtNameText: Laya.TextInput;
+
 		public beginButton: Laya.Image;
 		public logo: Laya.Image;
 		public rankingButton: Laya.Image;
