@@ -16,7 +16,7 @@
         {
             "label": "compile-laya",
             "type": "shell",
-            "command": "cd 'D:/W/Laya Proj/PlaneBattle/Client' ; layaair-cmd compile"
+            "command": "cd Client && layaair-cmd compile"
         }
     ]
 }

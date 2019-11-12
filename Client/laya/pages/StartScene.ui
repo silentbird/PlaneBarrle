@@ -46,8 +46,8 @@
                 {
                     "x":30,
                     "type":"TextInput",
-                    "searchKey":"TextInput,txtNameText,nameText",
-                    "props":{"y":0,"x":109,"width":122,"var":"nameText","skin":"covp/textinput.png","name":"txtNameText","height":41,"fontSize":20},
+                    "searchKey":"TextInput,txtNameText",
+                    "props":{"y":0,"x":109,"width":122,"var":"txtNameText","text":"test","skin":"covp/textinput.png","height":41,"fontSize":20},
                     "nodeParent":26,
                     "label":"txtNameText",
                     "isDirectory":false,

@@ -26,10 +26,8 @@ var GameOver = /** @class */ (function (_super) {
         var bestScore = Laya.LocalStorage.getItem("bestScore");
         this.bestScoreText.text = bestScore; //更新最高分数
         this.scoreText.text = GlobleFun.Score.toString(); //更新分数
-        this.UiClickScale(this.Again);
         this.UiClickScale(this.Back);
         this.UiClickScale(this.showRank);
-        this.Again.on(Laya.Event.CLICK, this, this.onAgain); //监听在玩一次按钮
         this.Back.on(Laya.Event.CLICK, this, this.onBack); //监听返回按钮
         this.showRank.on(Laya.Event.CLICK, this, this.onShowRank); //显示所有的排行 显示排行榜
     };
@@ -39,39 +37,38 @@ var GameOver = /** @class */ (function (_super) {
         this.scoreText.text = GlobleFun.Score.toString(); //更新分数
         GlobleFun.startScene.maxScoreText.text = bestScore; //更新 开始界面的最高得分
     };
-    GameOver.prototype.onAgain = function (e) {
-        GlobleFun.map.intiinit();
-        GlobleFun.resurgenceCount -= 1;
-        if (GlobleFun.resurgenceCount <= 0) {
-            this.Again.skin = "img/clear_btn_again.png";
-            console.log("本局复活次数已用完");
-            this.Again.disabled = true;
-        }
-        console.log("本局复活次数-1");
-        GlobleFun.isOver = false;
-        // GlobleFun.Score=0;
-        //   GlobleFun.checkpoint = 0;
-        //   GlobleFun.explosionNum = 2;
-        //   GlobleFun.invincibleNum = 2;
-        GlobleFun.specialBall = false;
-        GlobleFun.haveProp = false;
-        GlobleFun.haveSpecialBall = false;
-        GlobleFun.GameScene.isSpecialBall = false;
-        console.log("again++++++++++++");
-        this.visible = false;
-        var GameScene = GlobleFun.GameScene;
-        //      GlobleFun.bulletPower =1; 
-        //    GlobleFun.bulletInterval =10; 
-        Laya.timer.once(500, this, function () {
-            GameScene.player.event("again");
-        });
-        //location.reload()
-    };
+    // private onAgain(e: Event): void {
+    //     GlobleFun.map.intiinit();
+    //     GlobleFun.resurgenceCount -= 1;
+    //     if (GlobleFun.resurgenceCount <= 0) {
+    //         this.Again.skin = "img/clear_btn_again.png"
+    //         console.log("本局复活次数已用完");
+    //         this.Again.disabled = true;
+    //     }
+    //     console.log("本局复活次数-1");
+    //     GlobleFun.isOver = false;
+    //     // GlobleFun.Score=0;
+    //     //   GlobleFun.checkpoint = 0;
+    //     //   GlobleFun.explosionNum = 2;
+    //     //   GlobleFun.invincibleNum = 2;
+    //     GlobleFun.specialBall = false;
+    //     GlobleFun.haveProp = false;
+    //     GlobleFun.haveSpecialBall = false;
+    //     GlobleFun.GameScene.isSpecialBall = false;
+    //     console.log("again++++++++++++");
+    //     this.visible = false;
+    //     var GameScene: GameScene = GlobleFun.GameScene;
+    //     //      GlobleFun.bulletPower =1; 
+    //     //    GlobleFun.bulletInterval =10; 
+    //     Laya.timer.once(500, this, () => {
+    //         GameScene.player.event("again");
+    //     });
+    //     //location.reload()
+    // }
     GameOver.prototype.onBack = function () {
-        this.Again.skin = "img/clear_btn_resurrection.png";
+        // this.Again.skin = "img/clear_btn_resurrection.png"
         GlobleFun.map.intiinit();
-        //  console.log("back");
-        this.Again.disabled = false;
+        // this.Again.disabled = false;
         GlobleFun.resurgenceCount = 2;
         GlobleFun.isOver = true;
         GlobleFun.bulletPower = 1;

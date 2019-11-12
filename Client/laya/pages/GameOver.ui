@@ -2,9 +2,11 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":22,
+    "selecteID":24,
+    "searchKey":"View",
     "props":{"width":720,"top":0,"sceneColor":"#000000","right":0,"left":0,"layoutEnabled":true,"height":1280,"bottom":0,"alpha":1},
     "nodeParent":-1,
+    "maxID":28,
     "label":"View",
     "isOpen":true,
     "isDirectory":true,
@@ -15,6 +17,7 @@
         {
             "x":15,
             "type":"Image",
+            "searchKey":"Image",
             "props":{"top":0,"skin":"background/bg_rank.jpg","right":0,"left":0,"layoutEnabled":true,"bottom":0},
             "nodeParent":1,
             "label":"Image",
@@ -28,6 +31,7 @@
         {
             "x":15,
             "type":"Image",
+            "searchKey":"Image",
             "props":{"y":499,"x":360,"skin":"img/clear_img_bg.png","layoutEnabled":true,"centerY":-141,"centerX":0,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":1,
             "label":"Image",
@@ -40,7 +44,8 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":321,"x":135,"skin":"img/clear_img_highest.png"},
+                    "searchKey":"Image",
+                    "props":{"y":363,"x":132,"skin":"img/clear_img_highest.png"},
                     "nodeParent":19,
                     "label":"Image",
                     "isOpen":false,
@@ -51,9 +56,10 @@
                     "child":[
                         {
                             "type":"Text",
+                            "searchKey":"Text,bestScoreText",
                             "props":{"y":14,"x":250,"width":227,"var":"bestScoreText","text":"00","height":31,"fontSize":30,"font":"Arial","color":"#747474","align":"left"},
                             "nodeParent":23,
-                            "label":"Text(bestScoreText)",
+                            "label":"bestScoreText",
                             "isOpen":true,
                             "isDirectory":false,
                             "isAniNode":true,
@@ -66,9 +72,10 @@
                 {
                     "x":30,
                     "type":"Image",
+                    "searchKey":"Image,showRank",
                     "props":{"y":816,"x":280,"width":164,"var":"showRank","skin":"img/rank_pic.jpg","mouseThrough":true,"mouseEnabled":true,"layoutEnabled":true,"height":37,"alpha":0},
                     "nodeParent":19,
-                    "label":"Image(showRank)",
+                    "label":"showRank",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
@@ -81,9 +88,10 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"width":228,"var":"scoreText","top":249,"text":"7851","layoutEnabled":true,"height":108,"fontSize":103,"font":"Microsoft YaHei","color":"000000","centerX":-8,"align":"center"},
+            "searchKey":"Label,scoreText",
+            "props":{"width":228,"var":"scoreText","top":303,"text":"7851","layoutEnabled":true,"height":108,"fontSize":103,"font":"Microsoft YaHei","color":"000000","centerX":-8,"align":"center"},
             "nodeParent":1,
-            "label":"Label(scoreText)",
+            "label":"scoreText",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
@@ -94,40 +102,15 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"var":"challenge","skin":"img/clear_btn_challenge.png","centerX":-2,"bottom":764},
+            "searchKey":"Image,Back",
+            "props":{"y":1029,"x":352,"var":"Back","skin":"img/clear_btn_back.png","anchorY":0.5,"anchorX":0.5},
             "nodeParent":1,
-            "label":"Image(challenge)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":20,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":1019,"x":169,"var":"Back","skin":"img/clear_btn_back.png","anchorY":0.5,"anchorX":0.5},
-            "nodeParent":1,
-            "label":"Image(Back)",
+            "label":"Back",
             "isOpen":true,
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":21,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":1019,"x":478,"var":"Again","skin":"img/clear_btn_resurrection.png","anchorY":0.5,"anchorX":0.5},
-            "nodeParent":1,
-            "label":"Image(Again)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":22,
             "child":[
                 ]
         }],

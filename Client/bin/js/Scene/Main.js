@@ -26,7 +26,11 @@ var Main = /** @class */ (function (_super) {
         GlobleFun.socket.on('connect', function () {
             console.log("[LAYA]连接成功");
         });
-        GlobleFun.socket.emit("end_game", { name: "ly", score: 100 });
+        GlobleFun.socket.on('get_rank', function (data) {
+            if (GlobleFun.RankScene) {
+                GlobleFun.RankScene.setData(data);
+            }
+        });
         return _this;
     }
     Main.prototype.load = function () {
@@ -55,6 +59,10 @@ var Main = /** @class */ (function (_super) {
         // this.startScene.on("onSing", this, this.loadSignScene); //加载签到界面
     };
     Main.prototype.loadGameScene = function () {
+        if (!this.startScene.txtNameText.text) {
+            return;
+        }
+        GlobleFun.currentName = this.startScene.txtNameText.text;
         GlobleFun.addCheckpointScore(); //增加 关卡的分数
         console.log("loadGameScene");
         // console.log(" GlobleFun.bulletInterval ======="+GlobleFun.bulletInterval);
@@ -76,10 +84,14 @@ var Main = /** @class */ (function (_super) {
         this.startScene.visible = false;
     };
     Main.prototype.loadRankScene = function () {
-        var r = new RankScene();
-        r.zOrder = 1000;
-        Laya.stage.addChild(r);
-        console.log("loadRankScene");
+        if (!GlobleFun.RankScene) {
+            var r = new RankScene();
+            GlobleFun.RankScene = r;
+            r.zOrder = 1000;
+            Laya.stage.addChild(r);
+            console.log("[Game]打开rank scene");
+        }
+        GlobleFun.socket.emit("get_rank");
     };
     return Main;
 }(Laya.Sprite));

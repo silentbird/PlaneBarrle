@@ -19,6 +19,14 @@ var RankItem = /** @class */ (function (_super) {
     function RankItem() {
         return _super.call(this) || this;
     }
+    /**
+     * setData
+     */
+    RankItem.prototype.setData = function (data, idx) {
+        this.nickname.text = data["name"];
+        this.score.text = data["score"];
+        this.rankingNum.text = String(idx);
+    };
     return RankItem;
 }(ui.RankItemUI));
 //# sourceMappingURL=RankItem.js.map

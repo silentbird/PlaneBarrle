@@ -19,6 +19,12 @@ class Main extends Laya.Sprite {
         GlobleFun.socket.on('connect', () => {
             console.log("[LAYA]连接成功");
         });
+
+        GlobleFun.socket.on('get_rank', function (data: object) {
+            if (GlobleFun.RankScene) {
+                GlobleFun.RankScene.setData(data);
+            }
+        });
     }
 
     private load(): void {
@@ -50,10 +56,11 @@ class Main extends Laya.Sprite {
     }
 
     private loadGameScene(): void {
-        if (this.startScene.strName && this.startScene.numScore) {
-            GlobleFun.socket.emit("end_game", { name: this.startScene.strName, score: this.startScene.numScore });
+        
+        if (!this.startScene.txtNameText.text) {
+            return;
         }
-        return;
+        GlobleFun.currentName = this.startScene.txtNameText.text;
         GlobleFun.addCheckpointScore(); //增加 关卡的分数
 
         console.log("loadGameScene");
@@ -76,13 +83,17 @@ class Main extends Laya.Sprite {
     }
 
     private loadRankScene(): void {
-        var r = new RankScene();
-        r.zOrder = 1000;
-        Laya.stage.addChild(r);
-        console.log("loadRankScene");
+        if (!GlobleFun.RankScene) {
+            var r = new RankScene();
+            GlobleFun.RankScene = r;
+            r.zOrder = 1000;
+            Laya.stage.addChild(r);
+            console.log("[Game]打开rank scene");
+        }
+        GlobleFun.socket.emit("get_rank");
     }
 
-    // private loadHelpScene(): void {
+    // private loadHelpScene(): void {x 
     //     console.log("帮助界面");
 
     //     this.helpScene = new HelpScene();

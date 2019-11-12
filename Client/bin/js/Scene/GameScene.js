@@ -92,6 +92,8 @@ var GameScene = /** @class */ (function (_super) {
      * 玩家死亡 游戏结束
      */
     GameScene.prototype.onOver = function () {
+        //发送成绩
+        GlobleFun.socket.emit("end_game", { name: GlobleFun.currentName, score: GlobleFun.Score });
         Laya.timer.clear(this, this.flashingEffect);
         this.propTimeIcon.visible = false;
         this.isSpecialBall = false;

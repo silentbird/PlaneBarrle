@@ -91,11 +91,13 @@ class GameScene extends ui.sceneUI {
      * 玩家死亡 游戏结束
      */
     private onOver(): void {
+        //发送成绩
+        GlobleFun.socket.emit("end_game", { name: GlobleFun.currentName, score: GlobleFun.Score });
         Laya.timer.clear(this, this.flashingEffect);
 
         this.propTimeIcon.visible = false;
 
-        this.isSpecialBall = false;
+        this.isSpecialBall = false; 
         this.player.event("off", this.player);//取消玩家的移动监听
         this.setItem();
         GlobleFun.isOver = true;

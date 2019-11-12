@@ -16,7 +16,8 @@ class GlobleFun {
     public static haveProp: boolean = false;//场景中是否有道具
     public static checkpointScoreArr: any[] = [3000, 20000, 80000, 200000, 500000, 1000000];
     public static resurgenceCount: number = 2;//本局游戏最多复活次数
-    public static socket:SocketIOClient.Socket;
+    public static socket: SocketIOClient.Socket;
+    public static currentName: string;
     public static addCheckpointScore(): void {
         var m = 0;
         for (let i = 0; i < 100; i++) {

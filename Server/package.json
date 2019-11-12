@@ -22,7 +22,6 @@
   "devDependencies": {
     "nwjs-builder-phoenix": "^1.15.0"
   },
-
   "scripts": {
     "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
